@@ -1,0 +1,88 @@
+/* =====================================================================
+   CINEMA CNJ65 — ADMIN.CSS (LAYOUT RIENG CHO KHU VUC QUAN TRI / QUAY VE)
+   ---------------------------------------------------------------------
+   Dung CHUNG bien so trong variables.css. Tiep tuc quy uoc tien to "cnj-"
+   va BEM nhu style.css — file nay CHI bo sung component dac thu cho
+   trang quan tri (sidebar, bang du lieu, the thong ke), KHONG dinh nghia
+   lai component da co (button, form, alert... da dung lai tu style.css).
+   ===================================================================== */
+
+.cnj-admin-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  min-height: 100vh;
+}
+
+/* ---- SIDEBAR ---- */
+.cnj-admin-sidebar {
+  background: var(--cnj-ink-soft);
+  border-right: 1px solid var(--cnj-border);
+  padding: var(--cnj-sp-4) 0;
+  position: sticky; top: 0; height: 100vh; overflow-y: auto;
+}
+.cnj-admin-sidebar__brand {
+  display: flex; align-items: center; gap: var(--cnj-sp-2);
+  padding: 0 var(--cnj-sp-4) var(--cnj-sp-4);
+  font-family: var(--cnj-font-display); font-size: 1.25rem; letter-spacing: 0.03em;
+  border-bottom: 1px solid var(--cnj-border); margin-bottom: var(--cnj-sp-3);
+}
+.cnj-admin-sidebar__group-label {
+  padding: var(--cnj-sp-3) var(--cnj-sp-4) var(--cnj-sp-1);
+  font-size: var(--cnj-fs-tiny); text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--cnj-mist-dim);
+}
+.cnj-admin-sidebar__link {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px var(--cnj-sp-4);
+  color: var(--cnj-mist); font-size: var(--cnj-fs-small); font-weight: 500;
+  border-left: 3px solid transparent;
+  transition: all var(--cnj-transition);
+}
+.cnj-admin-sidebar__link:hover { color: var(--cnj-paper); background: rgba(255,255,255,0.03); }
+.cnj-admin-sidebar__link--active {
+  color: var(--cnj-gold); border-left-color: var(--cnj-gold); background: rgba(244,180,0,0.06);
+}
+
+.cnj-admin-content { padding: var(--cnj-sp-5) var(--cnj-sp-6); }
+.cnj-admin-topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: var(--cnj-sp-5);
+}
+
+@media (max-width: 900px) {
+  .cnj-admin-layout { grid-template-columns: 1fr; }
+  .cnj-admin-sidebar { position: static; height: auto; }
+}
+
+/* ---- STAT CARDS (dashboard) ---- */
+.cnj-stat-card {
+  background: var(--cnj-surface); border: 1px solid var(--cnj-border);
+  border-radius: var(--cnj-radius-md); padding: var(--cnj-sp-4);
+}
+.cnj-stat-card__label { font-size: var(--cnj-fs-tiny); color: var(--cnj-mist-dim); text-transform: uppercase; letter-spacing: 0.05em; }
+.cnj-stat-card__value { font-family: var(--cnj-font-display); font-size: 2rem; color: var(--cnj-gold); margin-top: 4px; }
+
+/* ---- DATA TABLE ---- */
+.cnj-table-wrap { overflow-x: auto; border: 1px solid var(--cnj-border); border-radius: var(--cnj-radius-md); }
+.cnj-table { width: 100%; border-collapse: collapse; font-size: var(--cnj-fs-small); }
+.cnj-table th {
+  text-align: left; padding: 12px var(--cnj-sp-3); background: var(--cnj-surface-raised);
+  color: var(--cnj-mist); font-weight: 600; font-size: var(--cnj-fs-tiny); text-transform: uppercase; letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--cnj-border); white-space: nowrap;
+}
+.cnj-table td {
+  padding: 12px var(--cnj-sp-3); border-bottom: 1px solid var(--cnj-border); color: var(--cnj-paper); vertical-align: middle;
+}
+.cnj-table tr:last-child td { border-bottom: none; }
+.cnj-table tr:hover td { background: rgba(255,255,255,0.02); }
+.cnj-table__actions { display: flex; gap: 8px; }
+
+/* ---- KHUNG THAO TAC TREN CUNG (bo loc/tim kiem + nut them moi) ---- */
+.cnj-toolbar {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--cnj-sp-3);
+  margin-bottom: var(--cnj-sp-4); flex-wrap: wrap;
+}
+.cnj-toolbar__filters { display: flex; gap: var(--cnj-sp-2); flex-wrap: wrap; align-items: center; }
+
+/* ---- BANG SINH GHE (mo phong so do hang/cot) ---- */
+.cnj-seat-preview-grid { display: flex; flex-direction: column; gap: 6px; align-items: center; margin: var(--cnj-sp-4) 0; }
