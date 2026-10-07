@@ -129,7 +129,18 @@ select:focus-visible, textarea:focus-visible {
 .cnj-navbar__toggle { display: none; }
 
 @media (max-width: 860px) {
-  .cnj-navbar__links { display: none; }
+  .cnj-navbar__links {
+    display: none;
+    position: absolute; top: var(--cnj-navbar-h); left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: var(--cnj-ink-soft); border-bottom: 1px solid var(--cnj-border);
+    padding: var(--cnj-sp-2) var(--cnj-sp-4) var(--cnj-sp-3);
+    box-shadow: var(--cnj-shadow-card);
+  }
+  .cnj-navbar__links--open { display: flex; }
+  .cnj-navbar__links .cnj-navbar__link {
+    padding: 14px 0; border-bottom: 1px solid var(--cnj-border); width: 100%;
+  }
   .cnj-navbar__toggle { display: block; }
 }
 

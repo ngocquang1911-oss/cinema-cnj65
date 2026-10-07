@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 450">
-  <rect width="300" height="450" fill="#161B24"/>
-  <rect x="0.5" y="0.5" width="299" height="449" fill="none" stroke="#2A3140"/>
-  <circle cx="150" cy="190" r="36" fill="none" stroke="#F4B400" stroke-width="3"/>
-  <path d="M138 175 L168 190 L138 205 Z" fill="#F4B400"/>
-  <text x="150" y="260" font-family="sans-serif" font-size="16" fill="#7C8494" text-anchor="middle">CINEMA CNJ65</text>
-</svg>

@@ -51,16 +51,80 @@
 
 @media (max-width: 900px) {
   .cnj-admin-layout { grid-template-columns: 1fr; }
-  .cnj-admin-sidebar { position: static; height: auto; }
+  /* Thay vi xep chong toan bo sidebar theo chieu doc (chiem het man hinh
+     truoc khi thay noi dung), chuyen thanh 1 thanh cuon NGANG gon gang. */
+  .cnj-admin-sidebar {
+    position: static; height: auto; width: 100%;
+    display: flex; flex-wrap: nowrap; overflow-x: auto; align-items: center;
+    padding: var(--cnj-sp-2) var(--cnj-sp-3); gap: 4px;
+    border-right: none; border-bottom: 1px solid var(--cnj-border);
+  }
+  .cnj-admin-sidebar__brand, .cnj-admin-sidebar__group-label { display: none; }
+  .cnj-admin-sidebar__link {
+    white-space: nowrap; border-left: none; border-bottom: 3px solid transparent;
+    border-radius: var(--cnj-radius-sm); padding: 8px 12px;
+  }
+  .cnj-admin-sidebar__link--active { border-left-color: transparent; border-bottom-color: var(--cnj-gold); }
+  .cnj-admin-content { padding: var(--cnj-sp-4); }
 }
 
-/* ---- STAT CARDS (dashboard) ---- */
+@media (max-width: 560px) {
+  .cnj-admin-topbar { flex-direction: column; align-items: flex-start; gap: var(--cnj-sp-2); }
+}
+
+/* ---- STAT CARDS (dashboard) ----
+   Luoi responsive: 4 cot tren man hinh rong, tu dong xuong it cot hon
+   khi man hinh hep, KHONG can inline style o JSP (truoc day dashboard.jsp
+   dung inline "grid-template-columns: repeat(3,1fr)" nen khong co breakpoint,
+   vo bo cuc tren mobile). */
+.cnj-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--cnj-sp-4);
+  margin-bottom: var(--cnj-sp-5);
+}
+@media (max-width: 1100px) { .cnj-stat-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px)  { .cnj-stat-grid { grid-template-columns: 1fr; } }
+
 .cnj-stat-card {
+  position: relative;
   background: var(--cnj-surface); border: 1px solid var(--cnj-border);
   border-radius: var(--cnj-radius-md); padding: var(--cnj-sp-4);
+  overflow: hidden;
+  display: flex; align-items: flex-start; gap: var(--cnj-sp-3);
+  transition: transform var(--cnj-transition), border-color var(--cnj-transition);
 }
-.cnj-stat-card__label { font-size: var(--cnj-fs-tiny); color: var(--cnj-mist-dim); text-transform: uppercase; letter-spacing: 0.05em; }
-.cnj-stat-card__value { font-family: var(--cnj-font-display); font-size: 2rem; color: var(--cnj-gold); margin-top: 4px; }
+.cnj-stat-card:hover { transform: translateY(-3px); border-color: var(--cnj-gold); }
+/* Vach mau ben trai — moi loai stat co the doi mau qua modifier */
+.cnj-stat-card::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+  background: var(--cnj-gold);
+}
+.cnj-stat-card--red::before { background: var(--cnj-red); }
+.cnj-stat-card--green::before { background: var(--cnj-green); }
+
+.cnj-stat-card__icon {
+  flex-shrink: 0; width: 44px; height: 44px; border-radius: var(--cnj-radius-sm);
+  background: rgba(244,180,0,0.1); color: var(--cnj-gold);
+  display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
+}
+.cnj-stat-card--red .cnj-stat-card__icon { background: rgba(214,40,57,0.1); color: var(--cnj-red); }
+.cnj-stat-card--green .cnj-stat-card__icon { background: rgba(46,204,113,0.1); color: var(--cnj-green); }
+
+.cnj-stat-card__body { min-width: 0; }
+.cnj-stat-card__label {
+  font-size: var(--cnj-fs-tiny); color: var(--cnj-mist-dim); text-transform: uppercase;
+  letter-spacing: 0.05em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.cnj-stat-card__value {
+  font-family: var(--cnj-font-display); font-size: 1.85rem; color: var(--cnj-paper);
+  margin-top: 2px; line-height: 1.1; word-break: break-word;
+}
+.cnj-stat-card__sub { font-size: var(--cnj-fs-tiny); color: var(--cnj-mist-dim); margin-top: 4px; }
+
+/* ---- Bo cuc 2 cot cho khu vuc bieu do + top list, tu xuong 1 cot tren man hinh hep ---- */
+.cnj-dashboard-row { display: grid; grid-template-columns: 2fr 1fr; gap: var(--cnj-sp-4); }
+@media (max-width: 900px) { .cnj-dashboard-row { grid-template-columns: 1fr; } }
 
 /* ---- DATA TABLE ---- */
 .cnj-table-wrap { overflow-x: auto; border: 1px solid var(--cnj-border); border-radius: var(--cnj-radius-md); }
